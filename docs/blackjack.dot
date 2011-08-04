@@ -1,0 +1,24 @@
+/* Author: Daniel Tralamazza
+ *
+ * Blackjack rules (taken from wikipedia)
+ */
+
+digraph blackjack {
+  start [ shape = box ]
+  start -> firstdecision [ label = "Deal" ]
+
+  firstdecision -> decision [ label = "Split" ]
+  firstdecision -> busted [ label = "Hit" ]
+  firstdecision -> end [ label = "Stand" ]
+  firstdecision -> end [ label = "Surrender" ]
+  firstdecision -> end [ label = "Double,\nHit" ]
+  
+  busted [ shape = diamond ]
+  busted -> decision [ color = red ]
+  busted -> end [ color = green ]
+
+  decision -> busted [ label = "Hit" ]
+  decision -> end [ label = "Stand" ]
+
+  end [ shape = box ]
+}
