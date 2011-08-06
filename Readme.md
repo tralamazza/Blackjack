@@ -10,6 +10,9 @@ Get some command line help/parameters:
 
     ./main.rb --help
 
+Test our robot and get some (gnuplot) graph out of it !
+
+    ./main.rb -p 0 | sed '/Robot/,$d' | gnuplot -p -e "plot '-' with lines title 'money' "
 
 ## Future ideas
 
