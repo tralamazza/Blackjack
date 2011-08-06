@@ -39,6 +39,7 @@ class Game
   def run
     # populate our shoe with N decks
     @options[:decks].times { |i| @shoe.concat(CARD_FACE) }
+    @shoe.shuffle! # first shuffle
     # game loop
     loop {
       bet_phase # first phase
