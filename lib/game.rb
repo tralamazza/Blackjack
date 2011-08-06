@@ -13,6 +13,7 @@ class Game
     @dealers_hand = Hand.new # dealers hand
     @options = options
     @shoe = [] # all our cards (from N decks)
+    @scrap = []
     @players = {} # players index their controller
   end
 
@@ -40,7 +41,6 @@ class Game
     @options[:decks].times { |i| @shoe.concat(CARD_FACE) }
     # game loop
     loop {
-      @shoe.shuffle! # shuffle our cards
       bet_phase # first phase
       break if @players.empty? # break the loop when there are no more players
       deal_phase # deal all cards
@@ -54,6 +54,10 @@ class Game
 
   # draws a card from the shoe and adds it to a hand
   def draw(hand)
+    if @shoe.empty? then # shoe is empty ?
+      @shoe.concat(@scrap.shuffle) # refill and shuffle
+      @scrap.clear # clear our scrap pile
+    end
     hand.add_card(@shoe.shift)
   end
 
