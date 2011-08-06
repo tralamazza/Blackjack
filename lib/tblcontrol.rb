@@ -18,7 +18,8 @@ class TableController
     @stats = {
       "win" => 0,
       "loss" => 0,
-      "draw" => 0
+      "draw" => 0,
+      "top profit" => 0
     }
   end
 
@@ -43,7 +44,7 @@ class TableController
     else
       tbl_decision = row[ CARD_VALUE[dealers_1st_card] - 2 ]
       decision = TABLE_MAP[tbl_decision] & choices
-      return decision[0]
+      return decision[0] || STAND
     end
   end
 
@@ -60,6 +61,7 @@ class TableController
   end
 
   def on_player_win(player, hand)
+    @stats["top profit"] = player.money if @stats["top profit"] < player.money
     @stats["win"] += 1
   end
 
