@@ -24,7 +24,7 @@ class TableController
 
   def bet(player)
     p player.to_s
-    return 10 # XXX make this smarter
+    return player.money > 9 ? 10 : player.money # XXX make this smarter
   end
 
   # return an action based on our basic table
@@ -51,7 +51,9 @@ class TableController
   end
 
   def on_player_quit(player, reason)
-    p "#{player}, Statistics #{@stats.join(', ')}"
+    s = ""
+    @stats.each_pair { |k,v| s += "\t#{k}= #{v}\n" }
+    puts "#{player}, Statistics: \n#{s}"
   end
 
   def on_hand_changed(player_str, hand)
