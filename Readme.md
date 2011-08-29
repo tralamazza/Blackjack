@@ -14,6 +14,8 @@ Test our robot and get some (gnuplot) graph out of it !
 
     ./main.rb -p 0 | sed '/Robot/,$d' | gnuplot -p -e "plot '-' with lines title 'money' "
 
+![blackjack_robot.png](http://i.imgur.com/LVT5om.jpg)
+
 ## Future ideas
 
 * Card counting robot :-)
